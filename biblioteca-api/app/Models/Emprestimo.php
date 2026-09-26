@@ -4,8 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
+
 class Emprestimo extends Model
 {
+    protected $primaryKey = 'emprestimo_id';
     protected $fillable = ['livro_id', 'usuario_id', 'data_emprestimo', 'data_devolucao', 'status'];
 
     public function livro() 

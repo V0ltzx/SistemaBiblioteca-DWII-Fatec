@@ -2,14 +2,29 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Sanctum\HasApiTokens;
 
-class Usuario extends Model
+class Usuario extends Authenticatable
 {
-    protected $fillable = ['nome', 'email', 'senha_hash'];
+    use HasApiTokens;
 
-    public function emprestimos() 
+    protected $table = 'usuarios';
+    protected $primaryKey = 'usuario_id';
+
+    protected $fillable = [
+        'nome', 'email', 'senha_hash',
+    ];
+
+    protected $hidden = ['senha_hash', 'remember_token'];
+
+    public function getAuthPassword()
     {
-        return $this->hasMany(Emprestimo::class);
+        return $this->senha_hash;
+    }
+
+    public function emprestimos()
+    {
+        return $this->hasMany(Emprestimo::class, 'usuario_id', 'usuario_id');
     }
 }

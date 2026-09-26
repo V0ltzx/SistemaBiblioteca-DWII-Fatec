@@ -6,10 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Autor extends Model
 {
+    protected $table = 'autors';
+    protected $primaryKey = 'autor_id';
+
     protected $fillable = ['nome', 'quantidade_livros', 'biografia'];
 
-    public function livros() 
+    public function livros()
     {
-        return $this->hasMany(Livro::class);
+        return $this->hasMany(Livro::class, 'autor_id', 'autor_id');
     }
 }
