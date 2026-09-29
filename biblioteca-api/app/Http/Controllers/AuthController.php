@@ -23,9 +23,10 @@ class AuthController extends Controller
             'senha_hash'      => Hash::make($dados['senha'])
         ]);
 
-        $token = $usuario->createToken('biblioteca')->plainTextToken;
+        $nomeToken = $usuario->nome . '-' . now()->timestamp;
+        $token = $usuario->createToken($nomeToken)->plainTextToken;
 
-        return response()->json(['usuario' => $usuario, 'token' => $token], 201);
+        return response()->json(['usuario' => $usuario, 'token' => $token, 'mensagem' => 'Registro realizado com sucesso.'], 201);
     }
 
     public function login(Request $request)
@@ -40,9 +41,10 @@ class AuthController extends Controller
         }
 
         $usuario = Auth::user();
-        $token = $usuario->createToken('biblioteca')->plainTextToken;
+        $nomeToken = $usuario->nome . '-' . now()->timestamp;
+        $token = $usuario->createToken($nomeToken)->plainTextToken;
 
-        return response()->json(['usuario' => $usuario, 'token' => $token]);
+        return response()->json(['usuario' => $usuario, 'token' => $token, 'mensagem' => 'Login realizado com sucesso.']);
     }
 
     public function logout(Request $request)

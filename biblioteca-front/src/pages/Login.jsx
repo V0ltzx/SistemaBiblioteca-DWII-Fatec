@@ -20,7 +20,7 @@ function Login() {
       body: JSON.stringify({ email, password }),
     });
     const data = await res.json();
-    alert(data.message);
+    alert(data.mensagem);
 
 
     localStorage.setItem('token', data.token);
@@ -39,7 +39,7 @@ function Login() {
       body: JSON.stringify({ nome, email, senha }),
     });
     const data = await res.json();
-    alert(data.message);
+    alert(data.mensagem);
 
 
     localStorage.setItem('token', data.token);
