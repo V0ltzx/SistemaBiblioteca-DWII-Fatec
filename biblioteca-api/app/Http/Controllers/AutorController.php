@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreAutorRequest;
 use App\Models\Autor;
+use App\Http\Requests\StoreAutorRequest;
 
 class AutorController extends Controller
 {

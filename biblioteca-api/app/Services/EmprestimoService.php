@@ -30,6 +30,10 @@ class EmprestimoService
 
     public function registrarDevolucao(Emprestimo $emprestimo): Emprestimo
     {
+        if($emprestimo->usuario_id !== auth()->id()) {
+            throw new \Exception('Você não tem permissão para devolver este livro.');
+        }
+        
         $emprestimo->update([
             'data_devolucao' => now()->toDateString(),
             'status'         => 'devolvido',

@@ -38,8 +38,9 @@ Route::prefix('v1')->middleware('throttle:60,1')->group(function () {
         Route::apiResource('usuarios', UsuarioController::class)
              ->only(['index', 'show', 'update', 'destroy']);
 
-        Route::get('/livros-externos/busca', LivroExternoController::class);
-
+        Route::get('/livros-externos/busca', [LivroExternoController::class, 'busca_isbn']);
+        Route::post('/livros-externos/adicionar', [LivroExternoController::class, 'add_livro']);
+        
     });
 
     

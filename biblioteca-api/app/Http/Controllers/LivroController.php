@@ -29,6 +29,7 @@ class LivroController extends Controller
     public function store(StoreLivroRequest $request)
     {
         $livro = Livro::create($request->validated());
+        
         return response()->json($livro, 201);
     }
 
@@ -46,6 +47,6 @@ class LivroController extends Controller
     public function destroy(Livro $livro)
     {
         $livro->delete();
-        return response()->json(null, 204);
+        return response()->json(['Livro' => $livro, 'mensagem' => 'Livro removido com sucesso.'], 204);
     }
 }
