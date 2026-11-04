@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
-import Login from './pages/Login';
-import Livros from './pages/livros';
-import LivroAdd from './pages/livro_add';
+import Login from './pages/old/Login';
+import Livros from './pages/old/livros';
+import LivroAdd from './pages/old/livro_add';
  
 export default function App() {
   return (

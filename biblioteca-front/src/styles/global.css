@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+
+/* ---------- Padrão da página ---------- */
+:root {
+  /* Cores */
+  --cor-primaria: #22CDEB;
+  --cor-primaria-claro: #A9F8FB; 
+  --cor-primaria-escura: #155158;
+  --cor-escura: #151C37;
+  --cor-ciano: #0F7376;
+  --cor-neutra: #EAFAFB;
+  --cor-palido: #F1F1F1;
+  --cor-branco: #FFFFFF;
+  --cor-texto-mutado: rgba(29, 25, 22, 0.6);
+  --cor-primaria-soft: rgba(167, 49, 65, 0.1);
+
+  /* Fonte */
+  --font-main: 'Inter', sans-serif;
+
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: clamp(14px, 1.111vw, 22px);
+}
+
+body {
+  font-family: var(--font-main);
+  color: var(--cor-escura);
+  background-color: var(--cor-primaria-claro);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+ul {
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font: inherit;
+  color: inherit;
+}
+
+/* ---------- Próximos alterações ---------- */

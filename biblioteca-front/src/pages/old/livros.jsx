@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
-import interrogacao from '../assets/interrogacao.jpg'
-import '../App.css'
+import interrogacao from '../../assets/interrogacao.jpg'
+import '../../App.css'
 
 
 function Livros() {
