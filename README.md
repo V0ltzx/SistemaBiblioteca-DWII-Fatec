@@ -33,7 +33,7 @@ O Sistema de Gestão de Biblioteca é uma aplicação web desenvolvida para o co
 4. No terminal abra a pasta biblioteca-api e use o comando: **"composer install"**
 5. Em outro terminal abra a pasta biblioteca-front e use o comando: **"npm install"**
 6. Em ambas as pastas do backend e frontend copie o **.env.example** substitua o nome apenas por **.env** e coloque corretamente as credencias de servidor do supabase no .env backend, no frontend a URL do vite
-7. No terminal do beckend utilize o comando: **"artisan key:generate"**
+7. No terminal do beckend utilize o comando: **"php artisan key:generate"**
 8. Rode as migrações das tabelas para o supabase com o comando: **"php artisan migrate"**
 9. Para abrir o servidor do laravel abra o terminal do backend e use o comando: **"php artisan serve"**
 10. Para abrir o servidor do frontend abra seu terminal e use o comando: **"npm run dev"**
