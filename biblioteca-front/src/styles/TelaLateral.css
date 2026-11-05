@@ -1,0 +1,21 @@
+.tela-grid{
+    display: grid;
+    grid-template-columns: 0.6fr 2fr;
+    min-height: 100vh;
+    background-color: var(--cor-neutra);
+}
+
+.tela-grid__lateral{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    align-content: center;
+}
+
+.tela-grid__paginas{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 30px;
+    margin: 2rem 1.5rem;
+}

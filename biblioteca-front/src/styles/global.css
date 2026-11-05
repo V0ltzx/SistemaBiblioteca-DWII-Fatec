@@ -64,4 +64,46 @@ h1, h2, h3, h4, h5, h6 {
   color: inherit;
 }
 
-/* ---------- Próximos alterações ---------- */
+/* ---------- Reutilizáveis ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: left;
+  gap: 0.5rem;
+  height: 2.75rem;
+  padding-inline: 1.5rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--cor-primaria);
+  outline-offset: 2px;
+}
+
+.btn--block {
+  width: 100%;
+}
+
+.btn--primaria {
+  background-color: var(--cor-primaria);
+  color: var(--cor-branco);
+  font-weight: bold;
+  font-size: medium;
+}
+
+.btn--primaria:hover {
+  background-color: #1eb4ce;
+}
+
+.btn--ciano {
+  background-color: var(--cor-ciano);
+  color: var(--cor-branco);
+}
+
+.btn--ciano:hover {
+  background-color: #0d6265;
+}
