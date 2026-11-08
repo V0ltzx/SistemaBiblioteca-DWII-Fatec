@@ -1,0 +1,105 @@
+/* ---------- Modal ---------- */
+
+.tela-info {
+  width: 100%;
+  max-width: 56rem;
+  padding: 1.5rem 1.875rem 1.875rem;
+  border-radius: 2rem;
+  background-color: var(--cor-escura);
+  color: white;
+}
+
+.hr{
+    width: 100%;
+    height: 2px;
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ---------- Cabeçalho ---------- */
+
+.tela-info__topo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: var(--cor-primaria-claro);
+    font-size: small;
+    margin-bottom: 1rem;
+}
+
+.topo__botao{
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    color: var(--cor-branco);
+    margin-left: auto;
+    padding: 0.3rem;
+}
+
+/* ---------- Informações ---------- */
+
+.tela-info__conteudo{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    
+}
+
+.conteudo__capa{
+    max-width: 9rem;
+}
+
+.conteudo__info{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    
+}
+
+.conteudo__info hr{
+    width: 41rem;
+}
+
+.conteudo__info-titulo{
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.conteudo__info-mutado{
+    color: #BACCD7;
+}
+
+.conteudo__info-metadados{
+    display: flex;
+    flex-direction: row;
+    margin: 1rem 0;
+}
+
+.metadados-data{}
+
+.metadados-data p{
+    font-size: small;
+}
+
+.metadados-genero p{
+    font-size: small;
+}
+
+.metadados-genero{
+    margin-left: 20rem;
+}
+
+/* ---------- Parte de baixo ---------- */
+
+.tela-info__botoes{
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.emprestar {
+    border: none;
+    margin-top: 2rem;
+    padding: 1rem 1rem;
+    max-width: 8rem;
+}
+
