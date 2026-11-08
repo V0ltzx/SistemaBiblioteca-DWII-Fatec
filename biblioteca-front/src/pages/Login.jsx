@@ -79,6 +79,7 @@ export default function Login(){
                                     required
                                 />
                                 <button 
+                                    type="button"
                                     className='form__input-icon' 
                                     onClick={() => setShowPassword((prev) => !prev)}
                                     aria-label={showPassword ? 'Ocultar senha' : 'Mostrar senha'}
@@ -88,7 +89,7 @@ export default function Login(){
                             </div>
                         </div>  
 
-                        <button type='submit' className='btn btn--primaria btn--block'>
+                        <button type='submit' className='btn btn-auth btn--primaria btn--block'>
                             Entrar
                         </button>
                    </form>

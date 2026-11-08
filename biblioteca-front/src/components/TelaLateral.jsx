@@ -2,29 +2,33 @@ import '../styles/TelaLateral.css'
 import { LibraryBig, BookCopy, Search, ChevronRight, House } from 'lucide-react'
 import Logo from '../assets/Images/Logo.svg'
 import { useState, createContext } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Avatar from '../assets/Images/Avatar.png'
+import { useAuth } from '../contexts/AuthContext';
 
-export const BuscaContext = createContext();
+export const BuscaContext = createContext({busca: '', setBusca: () => {} });
 
 export default function TelaLateral({children}){
-    const [ativo, setAtivo] = useState("home");
     const [busca, setBusca] = useState("");
+    const { usuario, logout } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
 
-    function Navegar(rota){
-        setAtivo(rota);
-        navigate("/" + rota);
+    function handleBuscaChange(e) {
+        const valor = e.target.value;
+        setBusca(valor);
+        if (location.pathname !== "/livros") {
+            navigate("/livros");
+        }
     }
 
-    function Biblioteca(value){
-        setBusca(value);
-        setAtivo("livros");
+    async function deslogar(){
+        await logout();
         navigate("/livros");
     }
 
     return(
-        <BuscaContext.Provider value={{busca, setBusca}}>
+        <BuscaContext.Provider value={{ busca, setBusca}}>
             <div className='tela-grid'>
                 <div className='tela-grid__lateral'>
                     <div className='lateral-content'>
@@ -34,28 +38,36 @@ export default function TelaLateral({children}){
 
                         <div className='barra-pesquisa'>
                             <Search className='barra-pesquisa__icon' />
-                            <input className='barra-pesquisa__input' type="search" placeholder='Busque por ISBN ou titulo' value={busca} onChange={(e) => Biblioteca(e.target.value)}></input>
+                            <input className='barra-pesquisa__input' type="search" placeholder='Busque por ISBN ou titulo' value={busca} onChange={handleBuscaChange}></input>
                         </div>
 
-                        <button className={`btn ${ativo === "home" ? "btn__ativo" : "btn__inativo"} btn--block`} onClick={() => Navegar("livrosold")}>
+                        <button className={`btn ${location.pathname === "/home" ? "btn__ativo" : "btn__inativo"} btn--block`} onClick={() => navigate("/livrosold")}>
                             <House /> Home
                         </button>
 
-                        <button className={`btn ${ativo === "livros" ? "btn__ativo" : "btn__inativo"} btn--block`} onClick={() => Navegar("livros")}>
+                        <button className={`btn ${location.pathname === "/livros" ? "btn__ativo" : "btn__inativo"} btn--block`} onClick={() => navigate("/livros")}>
                             <LibraryBig /> Biblioteca
                         </button>
 
-                        <button className={`btn ${ativo === "emprestimos" ? "btn__ativo" : "btn__inativo"} btn--block`} onClick={() => Navegar("emprestimos")}>
+                        <button className={`btn ${location.pathname === "/emprestimos" ? "btn__ativo" : "btn__inativo"} btn--block`} onClick={() => navigate("/emprestimos")}>
                             <BookCopy /> Empréstimos
                         </button>
 
-                        <button className={`btn ${ativo === "perfil" ? "btn__ativo" : "btn__inativo"} btn-perfil btn--block `} onClick={() => Navegar("perfil")}>
+                        {usuario ? (
+                            <button className={`btn ${location.pathname === "/perfil" ? "btn__ativo" : "btn__inativo"} btn-perfil btn--block `} onClick={() => deslogar()}>
                                 <div className='btn-perfil__avatar' >
                                     <img src={Avatar} />
                                 </div>
-                                Meu perfil
-                            <ChevronRight className='btn-perfil__icon'/>
-                        </button>
+                                    Deslogar
+                                <ChevronRight className='btn-perfil__icon'/>
+                            </button>
+                        ) : (
+                            <button className={`btn ${location.pathname === "/perfil" ? "btn__ativo" : "btn__inativo"} btn-perfil btn--block `} onClick={() => navigate("/login")}>
+                                Logar
+                                <ChevronRight className='btn-perfil__icon'/>
+                            </button>
+                        )}
+
                     </div>
                 </div>
 

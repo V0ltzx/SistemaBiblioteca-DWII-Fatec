@@ -7,6 +7,7 @@ import Registrar from './pages/Registrar'
 import LivroAdd from './pages/old/livro_add';
 import TelaLateral from './components/TelaLateral';
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
+import RotaProtegida from './components/RotaProtegida';
  
 export default function App() {
   const Navigate = useNavigate(); 
@@ -24,14 +25,14 @@ export default function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/registrar" element={<Registrar />} />
-      </Routes>
 
-      <Routes element={<LayoutBarraLateral />}>
-        <Route path="/" element={<Navigate to="/livros" replace />} />
-        <Route path="/loginold" element={<LoginOld />} />
-        <Route path='/livros' element={<Biblioteca />} />
-        <Route path="/livrosold" element={<LivrosOld />} />
-        <Route path="/livro_add" element={<LivroAdd />} />
+        <Route element={<LayoutBarraLateral />}>
+          <Route path="/" element={<Navigate to="/livros" replace />} />
+          <Route path="/loginold" element={<LoginOld />} />
+          <Route path='/livros' element={<Biblioteca />} />
+          <Route path="/livrosold" element={<LivrosOld />} />
+          <Route path="/livro_add" element={<LivroAdd />} />
+        </Route>
       </Routes>
     </AuthProvider>
   );

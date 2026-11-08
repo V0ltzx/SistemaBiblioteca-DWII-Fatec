@@ -95,6 +95,7 @@ export default function Registrar(){
                                     required
                                 />
                                 <button 
+                                    type="button"
                                     className='form__input-icon' 
                                     onClick={() => setShowPassword((prev) => !prev)}
                                     aria-label={showPassword ? 'Ocultar senha' : 'Mostrar senha'}
@@ -104,7 +105,7 @@ export default function Registrar(){
                             </div>
                         </div>  
 
-                        <button type='submit' className='btn btn--primaria btn--block'>
+                        <button type='submit' className='btn btn-auth btn--primaria btn--block'>
                             Criar conta
                         </button>
                    </form>
