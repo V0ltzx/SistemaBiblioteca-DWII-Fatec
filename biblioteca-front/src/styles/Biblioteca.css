@@ -1,0 +1,19 @@
+/* ---------- Cabeçalho ---------- */
+
+.titulo{
+    font-weight: bold;
+    font-size: 40px;
+    color: var(--cor-escura);
+}
+
+.subtexto{
+    color: var(--cor-texto-mutado);
+}
+
+hr{
+    height: 0.2rem;
+    color: var(--cor-escura);
+    background-color: var(--cor-escura);
+}
+
+
