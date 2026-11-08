@@ -43,7 +43,7 @@ export default function Biblioteca(){
             )}
             
 
-            <br /><hr /><br />
+            <br /><hr className='hr'/><br />
 
             {carregando ? (<p>Carregando...</p>) 
             : (

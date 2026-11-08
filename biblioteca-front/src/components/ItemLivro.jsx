@@ -28,9 +28,9 @@ export default function ItemLivro({livro, onAbrir}){
                     )}
                 </div>
                 
-                    <button className='livro-botao' onClick={onAbrir}>
-                        Ver detalhes <ArrowRight />
-                    </button>
+                <button className='livro-botao' onClick={onAbrir}>
+                    Ver detalhes <ArrowRight />
+                </button>
 
             </div>
         </div>

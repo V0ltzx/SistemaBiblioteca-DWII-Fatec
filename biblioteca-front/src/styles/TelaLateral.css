@@ -13,6 +13,8 @@
     flex-direction: column;
     padding: 1rem;
     align-content: center;
+    min-height: 100vh;
+    box-sizing: border-box;
 }
 
 .tela-grid__paginas{
@@ -22,6 +24,14 @@
     border-radius: 40px;
     margin: 2rem 1rem;
     padding: 2rem;
+}
+
+.lateral-content{
+    position: sticky;
+    top: 1rem;
+    bottom: 1rem;
+    height: 100vh;
+    box-sizing: border-box;
 }
 
 
@@ -44,7 +54,7 @@
 }
 
 .btn__ativo:hover{
-    background-color: #d9d9d9;
+    border:2px solid var(--cor-ciano);
 }
 
 .btn__inativo:hover{
@@ -100,10 +110,7 @@
     height: 3rem;
     padding-inline: 1rem;
     font-size: 800;
-<<<<<<< Updated upstream
-=======
     margin-top: 100%;
->>>>>>> Stashed changes
 }
 
 .btn-perfil__avatar {

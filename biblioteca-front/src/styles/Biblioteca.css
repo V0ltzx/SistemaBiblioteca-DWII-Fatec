@@ -10,7 +10,7 @@
     color: var(--cor-texto-mutado);
 }
 
-hr{
+.hr{
     height: 0.2rem;
     color: var(--cor-escura);
     background-color: var(--cor-escura);
