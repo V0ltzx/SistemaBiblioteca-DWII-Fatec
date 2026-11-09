@@ -13,7 +13,7 @@ class Usuario extends Authenticatable
     protected $primaryKey = 'usuario_id';
 
     protected $fillable = [
-        'nome', 'email', 'senha_hash',
+        'nome', 'email', 'senha_hash', 'perfil'
     ];
 
     protected $hidden = ['senha_hash', 'remember_token'];
@@ -26,5 +26,10 @@ class Usuario extends Authenticatable
     public function emprestimos()
     {
         return $this->hasMany(Emprestimo::class, 'usuario_id', 'usuario_id');
+    }
+
+    public function bibliotecario(): bool
+    {
+        return $this->perfil === 'bibliotecario';
     }
 }
