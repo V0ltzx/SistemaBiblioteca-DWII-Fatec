@@ -39,7 +39,7 @@ export default function Biblioteca(){
                 <div className='biblioteca-topo'>
                     <div className='titulo-flex'>
                         <h1 className='titulo'>Resultados da pesquisa</h1>
-                        {usuario.perfil === 'bibliotecario' && (
+                        {usuario?.perfil === 'bibliotecario' && (
                             <button type='button' className='topo__btn' onClick={() => setAdicionarModal(true)}>
                                 <Plus />
                             </button>
