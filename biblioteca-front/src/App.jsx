@@ -6,13 +6,16 @@ import TelaLateral from './components/TelaLateral';
  
 export default function App() {
   return (
-    <TelaLateral>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/livros" element={<Livros />} />
+        <Route path="/livros" 
+          element={
+            <TelaLateral>
+              <Livros />
+            </TelaLateral>
+          } 
+        />
         <Route path="/livro_add" element={<LivroAdd />} />
       </Routes>
-    </TelaLateral>
-    
   );
 }

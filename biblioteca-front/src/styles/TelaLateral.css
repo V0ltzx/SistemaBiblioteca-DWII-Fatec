@@ -57,6 +57,7 @@
 
 .btn__inativo:hover{
     background-color: var(--cor-branco);
+    border:2px solid var(--cor-ciano);
     color: var(--cor-primaria-escura);
 }
 
