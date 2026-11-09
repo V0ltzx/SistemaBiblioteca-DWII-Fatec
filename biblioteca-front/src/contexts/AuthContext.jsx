@@ -33,7 +33,7 @@ export function AuthProvider({ children }) {
   }
 
   async function registrar(nome, email, senha){
-    const { data } = await api.post("/login", {nome, email, senha});
+    const { data } = await api.post("/registrar", {nome, email, senha});
     localStorage.setItem("token", data.token);
     setUsuario(data.usuario);
   }
