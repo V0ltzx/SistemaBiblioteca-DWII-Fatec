@@ -6,7 +6,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import Avatar from '../assets/Images/Avatar.png'
 import { useAuth } from '../contexts/AuthContext';
 
-export const BuscaContext = createContext({busca: '', setBusca: () => {} });
+export const BuscaContext = createContext();
 
 export default function TelaLateral({children}){
     const [busca, setBusca] = useState("");
@@ -15,8 +15,7 @@ export default function TelaLateral({children}){
     const location = useLocation();
 
     function handleBuscaChange(e) {
-        const valor = e.target.value;
-        setBusca(valor);
+        setBusca(e.target.value);
         if (location.pathname !== "/livros") {
             navigate("/livros");
         }
@@ -41,7 +40,7 @@ export default function TelaLateral({children}){
                             <input className='barra-pesquisa__input' type="search" placeholder='Busque por ISBN ou titulo' value={busca} onChange={handleBuscaChange}></input>
                         </div>
 
-                        <button className={`btn ${location.pathname === "/home" ? "btn__ativo" : "btn__inativo"} btn--block`} onClick={() => navigate("/livrosold")}>
+                        <button className={`btn ${location.pathname === "/livrosold" ? "btn__ativo" : "btn__inativo"} btn--block`} onClick={() => navigate("/livrosold")}>
                             <House /> Home
                         </button>
 
@@ -53,17 +52,21 @@ export default function TelaLateral({children}){
                             <BookCopy /> Empréstimos
                         </button>
 
+                        <button className={`btn ${location.pathname === "/emprestimos" ? "btn__ativo" : "btn__inativo"} btn--block`} onClick={() => navigate("/emprestimos")}>
+                            <BookCopy /> Empréstimos
+                        </button>
+
                         {usuario ? (
                             <button className={`btn ${location.pathname === "/perfil" ? "btn__ativo" : "btn__inativo"} btn-perfil btn--block `} onClick={() => deslogar()}>
                                 <div className='btn-perfil__avatar' >
                                     <img src={Avatar} />
                                 </div>
-                                    Deslogar
+                                    Sair da conta
                                 <ChevronRight className='btn-perfil__icon'/>
                             </button>
                         ) : (
                             <button className={`btn ${location.pathname === "/perfil" ? "btn__ativo" : "btn__inativo"} btn-perfil btn--block `} onClick={() => navigate("/login")}>
-                                Logar
+                                Entrar
                                 <ChevronRight className='btn-perfil__icon'/>
                             </button>
                         )}
