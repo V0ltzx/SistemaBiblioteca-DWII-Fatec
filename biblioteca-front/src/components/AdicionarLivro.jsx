@@ -12,6 +12,10 @@ export default function AdicionarLivro({onFechar}){
         e.preventDefault();
     }
 
+    function handleChange(e){
+        setForm({ ...form, [e.target.name]: e.target.value });
+    }
+
     return(
         <div className="modal-overlay" onClick={onFechar}>
             <div 
@@ -38,7 +42,7 @@ export default function AdicionarLivro({onFechar}){
                                         name="isbn" 
                                         id="isbn"
                                         value={form.isbn} 
-                                        onChange={(e) => setForm(e.target.value)}
+                                        onChange={handleChange}
                                         placeholder="Digite o ISBN do livro"
                                         required
                                     />
@@ -54,7 +58,7 @@ export default function AdicionarLivro({onFechar}){
                                             name="titulo" 
                                             id="titulo"
                                             value={form.titulo} 
-                                            onChange={(e) => setForm(e.target.value)}
+                                            onChange={handleChange}
                                             placeholder="Digite o título do livro"
                                             required
                                         />
@@ -69,7 +73,7 @@ export default function AdicionarLivro({onFechar}){
                                             name="autor" 
                                             id="autor"
                                             value={form.autor} 
-                                            onChange={(e) => setForm(e.target.value)}
+                                            onChange={handleChange}
                                             placeholder="Digite o nome do autor"
                                             required
                                         />
@@ -86,7 +90,7 @@ export default function AdicionarLivro({onFechar}){
                                             name="genero" 
                                             id="genero"
                                             value={form.genero} 
-                                            onChange={(e) => setForm(e.target.value)}
+                                            onChange={handleChange}
                                             placeholder="Digite o gênero do livro"
                                             required
                                         />
@@ -101,7 +105,7 @@ export default function AdicionarLivro({onFechar}){
                                             name="ano_publicacao" 
                                             id="ano_publicacao"
                                             value={form.ano_publicacao} 
-                                            onChange={(e) => setForm(e.target.value)}
+                                            onChange={handleChange}
                                             placeholder="Digite o ano"
                                             required
                                         />
@@ -129,7 +133,7 @@ export default function AdicionarLivro({onFechar}){
                                             name="capa" 
                                             id="capa"
                                             value={form.capa} 
-                                            onChange={(e) => setForm(e.target.value)}
+                                            onChange={handleChange}
                                             placeholder="https://..."
                                         />
                                         <Link color='#60747B'/>
