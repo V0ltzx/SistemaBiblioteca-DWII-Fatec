@@ -1,5 +1,5 @@
 import '../styles/ItemLivro.css';
-import CapaIndefinida from '../assets/Images/CapaIndefinida.png';
+import CapaIndefinida from '../assets/Images/capaIndefinida.png';
 import { ArrowRight } from 'lucide-react';
 
 export default function ItemLivro({livro, onAbrir}){
