@@ -1,36 +1,73 @@
-import { useState } from 'react'
-import axios from "axios"
-import '../styles/AdicionarLivro.css'
-import { X, CalendarDays, Link, Search } from 'lucide-react'
-import '../styles/Auth.css'
-import capaIndefinida from '../assets/Images/capaIndefinida.png'
+import { useState } from 'react';
+import axios from "axios";
+import '../styles/AdicionarLivro.css';
+import { X, CalendarDays, Link, Search } from 'lucide-react';
+import '../styles/Auth.css';
+import capaIndefinida from '../assets/Images/capaIndefinida.png';
+import { useActionData } from 'react-router-dom';
 
 export default function AdicionarLivro({onFechar}){
 
     const [form, setForm] = useState({});
     const [buscandoIsbn, setBuscandoIsbn] = useState(true);
+    const [carregando, setCarregando] = useState(false);
 
     async function buscaIsbn(){
         if (!form.isbn) return;
 
+        let livroSinopse = form.sinopse;
+        let autorNome = form.autor;
+        let livroGenero = form.genero;
+
         try{
+            setCarregando(true);
             const { data: dadosLivro }  = await axios.get(`https://openlibrary.org/isbn/${form.isbn}.json`);
-            const { data: dadosAutor }  = await axios.get(`https://openlibrary.org${dadosLivro?.authors[0]?.key}.json`);
-            const { data: dadosWork  }  = await axios.get(`https://openlibrary.org${dadosLivro?.works[0]?.key}.json`);
-            const { data: dadosTag   }  = await axios.get(`https://openlibrary.org${dadosWork?.genres[0]}.json`);
+            if( dadosLivro?.authors[0]?.key ){
+                try{
+                   const { data: dadosAutor } = await axios.get(`https://openlibrary.org${dadosLivro?.authors[0]?.key}.json`);
+                    autorNome = dadosAutor?.name;
+                }
+                catch(err){
+                    console.log("Não foi achado um autor");
+                }
+            }
+            
+            if(dadosLivro?.works[0]?.key){
+                try{
+                    const { data: dadosWork } = await axios.get(`https://openlibrary.org${dadosLivro.works[0].key}.json`);
+
+                    if(dadosWork?.description?.value){
+                        livroSinopse = dadosWork?.description?.value; 
+                    } else livroSinopse = dadosWork?.description;
+
+                    if(dadosWork?.genres[0]){
+                        try{
+                            const { data: dadosTag } = await axios.get(`https://openlibrary.org${dadosWork?.genres[0]}.json`);
+                            livroGenero = dadosTag?.name;
+                        } catch(err){
+
+                        }
+                    } else livroGenero = dadosWork?.subjects[0];
+                } catch(err) {
+
+                }
+
+            }
+            
             setForm((f) => ({
                 ...f,
                 titulo: dadosLivro.title ?? f.titulo,
-                autor: dadosAutor.name ?? f.autor,
+                autor: autorNome,
                 capa: `https://covers.openlibrary.org/b/isbn/${form.isbn}-M.jpg` ?? f.capa,
-                sinopse: dadosWork.description ?? dadosWork.description.value ?? f.sinopse,
-                genero: dadosTag.name ?? f.genero,
+                sinopse: livroSinopse,
+                genero: livroGenero,
                 ano_publicacao: dadosLivro.publish_date ? dadosLivro.publish_date.slice(-4) : f.ano_publicacao,
             }));
 
         } catch(err) {
 
         } finally {
+            setCarregando(false);
             setBuscandoIsbn(false);  
         }
     }
@@ -193,7 +230,7 @@ export default function AdicionarLivro({onFechar}){
                 <div className='tela-adicionar__fim'>
                     <hr />
                     <button type='button' onClick={handleSubmit} className='btn btn--block btn--primaria salvar'>
-                        Salvar
+                        {carregando ? 'Salvando...' : 'Salvar'}
                     </button>
                 </div>
 
