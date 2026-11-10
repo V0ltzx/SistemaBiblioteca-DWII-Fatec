@@ -2,7 +2,7 @@
 
 .tela-adicionar{
     width: 56rem;
-    height: 90vh;
+    max-height: 90vh;
     padding: 1.5rem 1.875rem 1.875rem;
     border-radius: 2rem;
     background-color: var(--cor-neutra);
@@ -58,8 +58,70 @@
     width: 100%;
 }
 
+.form__capa img{
+    max-width: 11.25rem;
+    max-height: 17.18rem;
+}
+
+.form__capa-label{
+    font-weight: bold;
+    width: 100%;
+    text-align: left;
+}
+
+
 .divisoria{
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
     gap: 1rem;
 }
+
+.btn-isbn{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-items: center;
+    border: 2px solid #D4E6E9;
+    border-radius: 12px;
+    background-color: var(--cor-branco);
+    height: 2rem;
+    width: 2rem;
+    padding: 0.3rem;
+    top: 50%;
+    transform: translateY(60%);
+    color: #60747B;
+}
+
+.btn-isbn:hover{
+    border-color: var(--cor-ciano);
+    color: black;
+}
+
+/* ---------- Fim do modal ---------- */
+
+.tela-adicionar__fim{
+    display: flex;
+    flex-direction: column;
+}
+
+.tela-adicionar__fim hr{
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    border-color: #D4E6E9;
+}
+
+.salvar {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    border: none;
+    padding: 1rem 1rem;
+    max-width: 5rem;
+    margin-left: auto;
+}
+

@@ -124,6 +124,21 @@
     margin-left: auto;
 }
 
+.btn-perfil__text{
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-perfil__text-nome{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    color: var(--cor-primaria-escura);
+    font-size: 0.8rem;
+}
+
+
 /* ---------- Select (Não sei se vou fazer) ---------- */
 
 .select{

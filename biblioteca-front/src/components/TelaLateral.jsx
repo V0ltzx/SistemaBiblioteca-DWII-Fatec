@@ -1,5 +1,5 @@
 import '../styles/TelaLateral.css'
-import { LibraryBig, BookCopy, Search, ChevronRight, House } from 'lucide-react'
+import { LibraryBig, BookCopy, Search, ChevronRight, House, Star } from 'lucide-react'
 import Logo from '../assets/Images/Logo.svg'
 import { useState, createContext } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -57,7 +57,15 @@ export default function TelaLateral({children}){
                                 <div className='btn-perfil__avatar' >
                                     <img src={Avatar} />
                                 </div>
-                                    Sair da conta
+
+                                <div className='btn-perfil__text'>
+                                    <p className='btn-perfil__text-nome'>
+                                        {usuario.nome}
+                                        {usuario.perfil === 'bibliotecario' && (<Star size={16} fill='#155158'/>)}
+                                    </p>
+                                    <p>Sair da conta</p>
+                                </div>
+
                                 <ChevronRight className='btn-perfil__icon'/>
                             </button>
                         ) : (

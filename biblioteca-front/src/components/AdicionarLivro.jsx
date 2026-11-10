@@ -1,19 +1,46 @@
 import { useState } from 'react'
+import axios from "axios"
 import '../styles/AdicionarLivro.css'
-import { X, CalendarDays, Link } from 'lucide-react'
+import { X, CalendarDays, Link, Search } from 'lucide-react'
 import '../styles/Auth.css'
 import capaIndefinida from '../assets/Images/capaIndefinida.png'
 
 export default function AdicionarLivro({onFechar}){
 
-    const [form, setForm] = useState({})
+    const [form, setForm] = useState({});
+    const [buscandoIsbn, setBuscandoIsbn] = useState(true);
+
+    async function buscaIsbn(){
+        if (!form.isbn) return;
+
+        try{
+            const { data: dadosLivro }  = await axios.get(`https://openlibrary.org/isbn/${form.isbn}.json`);
+            const { data: dadosAutor }  = await axios.get(`https://openlibrary.org${dadosLivro?.authors[0]?.key}.json`);
+            const { data: dadosWork  }  = await axios.get(`https://openlibrary.org${dadosLivro?.works[0]?.key}.json`);
+            const { data: dadosTag   }  = await axios.get(`https://openlibrary.org${dadosWork?.genres[0]}.json`);
+            setForm((f) => ({
+                ...f,
+                titulo: dadosLivro.title ?? f.titulo,
+                autor: dadosAutor.name ?? f.autor,
+                capa: `https://covers.openlibrary.org/b/isbn/${form.isbn}-M.jpg` ?? f.capa,
+                sinopse: dadosWork.description ?? dadosWork.description.value ?? f.sinopse,
+                genero: dadosTag.name ?? f.genero,
+                ano_publicacao: dadosLivro.publish_date ? dadosLivro.publish_date.slice(-4) : f.ano_publicacao,
+            }));
+
+        } catch(err) {
+
+        } finally {
+            setBuscandoIsbn(false);  
+        }
+    }
 
     function handleSubmit(e){
         e.preventDefault();
     }
 
     function handleChange(e){
-        setForm({ ...form, [e.target.name]: e.target.value });
+        setForm((f) => ({ ...form, [e.target.name]: e.target.value }));
     }
 
     return(
@@ -34,20 +61,27 @@ export default function AdicionarLivro({onFechar}){
                 <div className='adicionar-form'>
                     <form onSubmit={handleSubmit}>
                         <div className='form__dados'>
-                            <div className='form__campo'>
-                                <label htmlFor="isbn">ISBN</label>
-                                <div className='form__input'>
-                                    <input  
-                                        type="text" 
-                                        name="isbn" 
-                                        id="isbn"
-                                        value={form.isbn} 
-                                        onChange={handleChange}
-                                        placeholder="Digite o ISBN do livro"
-                                        required
-                                    />
+                            <div className='divisoria'>
+                                <div className='form__campo'>
+                                    <label htmlFor="isbn">ISBN</label>
+                                    <div className='form__input'>
+                                        <input  
+                                            type="text" 
+                                            name="isbn" 
+                                            id="isbn"
+                                            value={form.isbn} 
+                                            onChange={handleChange}
+                                            placeholder="Digite o ISBN do livro"
+                                            required
+                                        />
+                                    </div>
                                 </div>
+                                <button type='button' className='btn-isbn' onClick={buscaIsbn}>
+                                    <Search />
+                                </button>
                             </div>
+                            
+                            
 
                             <div className='divisoria'>
                                 <div className='form__campo'>
@@ -113,10 +147,24 @@ export default function AdicionarLivro({onFechar}){
                                     </div>
                                 </div>
                             </div>
+
+                            <div className='form__campo'>
+                                <label htmlFor="sinopse">Sinopse</label>
+                                <div className='form__input form__input-grande'>
+                                    <textarea  
+                                        name="sinopse" 
+                                        id="sinopse"
+                                        value={form.sinopse} 
+                                        onChange={handleChange}
+                                        placeholder="Texto..."
+                                    />
+                                </div>
+                            </div>
+
                         </div>
                     </form>
 
-                    <div className='form__capa'>
+                    <div className='form__capa  form__capa-label'>
                         <h1>Capa do livro</h1>
 
                         {form.capa ? (
@@ -139,9 +187,16 @@ export default function AdicionarLivro({onFechar}){
                                         <Link color='#60747B'/>
                                     </div>
                                 </div>
-                    </div>
-                    
+                    </div>       
                 </div>
+                
+                <div className='tela-adicionar__fim'>
+                    <hr />
+                    <button type='button' onClick={handleSubmit} className='btn btn--block btn--primaria salvar'>
+                        Salvar
+                    </button>
+                </div>
+
             </div>
         </div>
     )
