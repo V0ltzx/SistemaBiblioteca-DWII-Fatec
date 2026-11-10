@@ -20,15 +20,14 @@ class StoreLivroRequest extends FormRequest
             'sinopse'        => ['nullable', 'string'],
             'genero'         => ['nullable', 'string', 'max:45'],
             'ano_publicacao' => ['nullable', 'integer', 'digits:4'],
-            'autor_id'       => ['required', 'integer', 'exists:autors,autor_id'],
+            'autor'          => ['required', 'string'],
         ];
     }
 
     public function messages(): array
     {
         return [
-            'isbn.unique'      => 'Já existe um livro cadastrado com esse ISBN.',
-            'autor_id.exists'  => 'Selecione um autor válido.',
+            'isbn.unique'      => 'Já existe um livro cadastrado com esse ISBN.'
         ];
     }
 }

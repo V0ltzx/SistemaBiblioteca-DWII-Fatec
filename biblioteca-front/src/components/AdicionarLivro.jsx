@@ -5,11 +5,12 @@ import { X, CalendarDays, Link, Search } from 'lucide-react';
 import '../styles/Auth.css';
 import capaIndefinida from '../assets/Images/capaIndefinida.png';
 import { useActionData } from 'react-router-dom';
+import api from '../api/client';
 
 export default function AdicionarLivro({onFechar}){
 
     const [form, setForm] = useState({});
-    const [buscandoIsbn, setBuscandoIsbn] = useState(true);
+    const [buscandoIsbn, setBuscandoIsbn] = useState(false);
     const [carregando, setCarregando] = useState(false);
 
     async function buscaIsbn(){
@@ -17,11 +18,13 @@ export default function AdicionarLivro({onFechar}){
 
         let livroSinopse = form.sinopse;
         let autorNome = form.autor;
+        let autorBio = null;
         let livroGenero = form.genero;
 
         try{
-            setCarregando(true);
+            setBuscandoIsbn(true);
             const { data: dadosLivro }  = await axios.get(`https://openlibrary.org/isbn/${form.isbn}.json`);
+
             if( dadosLivro?.authors[0]?.key ){
                 try{
                    const { data: dadosAutor } = await axios.get(`https://openlibrary.org${dadosLivro?.authors[0]?.key}.json`);
@@ -31,7 +34,7 @@ export default function AdicionarLivro({onFechar}){
                     console.log("Não foi achado um autor");
                 }
             }
-            
+
             if(dadosLivro?.works[0]?.key){
                 try{
                     const { data: dadosWork } = await axios.get(`https://openlibrary.org${dadosLivro.works[0].key}.json`);
@@ -40,7 +43,9 @@ export default function AdicionarLivro({onFechar}){
                         livroSinopse = dadosWork?.description?.value; 
                     } else livroSinopse = dadosWork?.description;
 
-                    if(dadosWork?.genres[0]){
+                    console.log(dadosWork.genres);
+                    console.log(dadosWork.subjects);
+                    if(dadosWork?.genres){
                         try{
                             const { data: dadosTag } = await axios.get(`https://openlibrary.org${dadosWork?.genres[0]}.json`);
                             livroGenero = dadosTag?.name;
@@ -62,18 +67,27 @@ export default function AdicionarLivro({onFechar}){
                 sinopse: livroSinopse,
                 genero: livroGenero,
                 ano_publicacao: dadosLivro.publish_date ? dadosLivro.publish_date.slice(-4) : f.ano_publicacao,
+                autor_bio: autorBio,
             }));
 
         } catch(err) {
 
         } finally {
-            setCarregando(false);
             setBuscandoIsbn(false);  
         }
     }
 
-    function handleSubmit(e){
+    async function handleSubmit(e){
         e.preventDefault();
+        setCarregando(true);
+        try{
+            await api.post('/livros', form);
+        } catch(err){
+            console.log(err.response?.data?.message )
+        }
+        finally{
+            setCarregando(false)
+        }
     }
 
     function handleChange(e){

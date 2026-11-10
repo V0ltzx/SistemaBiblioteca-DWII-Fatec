@@ -121,7 +121,8 @@
     align-content: center;
     border: none;
     padding: 1rem 1rem;
-    max-width: 5rem;
+    width: fit-content;
+    max-width: 7rem;
     margin-left: auto;
 }
 
