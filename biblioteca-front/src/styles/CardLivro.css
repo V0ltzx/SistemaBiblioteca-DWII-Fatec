@@ -1,0 +1,39 @@
+.card{
+    display: flex;
+    height: 12rem;
+    background-color: var(--cor-escura);
+    border-radius: 0.8rem;
+    align-items: center;
+    gap: 2rem;
+}
+
+.titulo-card{
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--cor-branco);
+}
+
+.titulo-menor-card{
+    color: var(--cor-neutra);
+    font-size: 1rem;
+}
+
+.card-detalhes{
+    display: flex;
+    line-height: 3rem;
+    align-items: center;
+    color: var(--cor-primaria);
+    gap: 0.2rem;
+}
+
+.capa{
+    margin-left: 1.5rem;
+    justify-content: center;
+    width: 15%;
+    height: 90%;
+}
+
+.imagem{
+    height: 100%;
+}
+

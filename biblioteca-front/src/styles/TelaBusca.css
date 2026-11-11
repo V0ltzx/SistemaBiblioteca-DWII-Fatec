@@ -1,0 +1,17 @@
+.tela{
+    display: grid;
+    width: 100%;
+    gap: 2rem;
+
+}
+
+.titulo{
+    font-size: 2.5rem;
+    font-weight: 600;
+    line-height: 1.6;
+}
+.titulo-menor{
+    color: var(--cor-texto-mutado);
+    font-size: 0.8rem;
+}
+
