@@ -218,11 +218,7 @@ export default function AdicionarLivro({onFechar}){
                     <div className='form__capa  form__capa-label'>
                         <h1>Capa do livro</h1>
 
-                        {form.capa ? (
-                            <img src={form.capa} />
-                        ) : (
-                            <img src={capaIndefinida}/>
-                        )}
+                        <img src={form.capa ? form.capa : capaIndefinida} />
                         
                         <div className='form__campo'>
                                     <label htmlFor="capa">URL da capa</label>

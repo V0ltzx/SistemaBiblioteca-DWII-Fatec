@@ -1,8 +1,17 @@
-import '../styles/LivroDetalhe.css'
-import { X, BookOpen } from 'lucide-react'
-import capaIndefinida from '../assets/Images/capaIndefinida.png'
+import '../styles/LivroDetalhe.css';
+import { X, BookOpen } from 'lucide-react';
+import capaIndefinida from '../assets/Images/capaIndefinida.png';
+import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function DetalheLivro({livro, onFechar}){
+    const { usuario } = useAuth();
+    const Navigate = useNavigate()
+
+    async function emprestar(){
+        console.log("Tentou emprestar")
+    }
+
     return(
         <div className='modal-overlay' onClick={onFechar}>
             <div 
@@ -21,7 +30,7 @@ export default function DetalheLivro({livro, onFechar}){
 
                 <div className='tela-info__conteudo'>
                     <div className='conteudo__capa'>
-                        {livro.capa ? (<img src={livro.capa} alt="Capa do livro" />) : (<img src={capaIndefinida} alt="Capa do livro" />)}
+                        <img src={livro.capa ? `${livro.capa}` : `${capaIndefinida}`} alt="capa do livro" />
                     </div>
 
                     <div className='conteudo__info'>
@@ -37,12 +46,12 @@ export default function DetalheLivro({livro, onFechar}){
                         <div className='conteudo__info-metadados'>
                             <div className='metadados-data'>
                                 <p className='conteudo__info-mutado'>ANO DE PUBLICAÇÃO</p>
-                                {livro.ano_publicacao ? (<h1>{livro.ano_publicacao}</h1>) : (<h1>Este livro não tem data de publicação definida</h1>)}
+                                <h1>{livro.ano_publicacao ? `${livro.ano_publicacao}` : 'Este livro não tem data de publicação definida'}</h1>
                             </div>
 
                             <div className='metadados-genero'>
                                 <p className='conteudo__info-mutado'>GÊNERO</p>
-                                {livro.genero ? (<h1>{livro.genero}</h1>) : (<h1>Este livro não tem gênero definido</h1>)}
+                                <h1>{livro.genero ? `${livro.genero}` : 'Este livro não tem gênero definido'}</h1>
                             </div>
                         </div>
 
@@ -50,19 +59,15 @@ export default function DetalheLivro({livro, onFechar}){
 
                         <div className=''>
                             <h1>Sinopse</h1>
-                            {livro.sinopse ? (
-                                <p className='conteudo__info-mutado'>{livro.sinopse}</p>
-                            ) : (
-                                <p className='conteudo__info-mutado'>Este livro não possui sinopse</p>
-                            )}
+                            <p className='conteudo__info-mutado'>{livro.sinopse ? `${livro.sinopse}` : 'Este livro não possui sinopse'}</p>
                         </div>
 
                     </div>
                 </div>
-
+                
                 <div className='tela-info__botoes'>
                     <hr className='hr'/>
-                    <button className='btn btn--block btn--primaria emprestar'>
+                    <button className='btn btn--block btn--primaria emprestar' onClick={usuario ? () => emprestar() : () => Navigate('/login')}>
                         <BookOpen /> Emprestar
                     </button>
                 </div>

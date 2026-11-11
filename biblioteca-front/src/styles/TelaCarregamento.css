@@ -31,7 +31,7 @@
 }
 
 .loader {
-  border: 8px solid #f3f3f3; 
+  border: 8px solid #d4d4d4; 
   border-top: 8px solid var(--cor-primaria); 
   border-radius: 50%;
   width: 60px;

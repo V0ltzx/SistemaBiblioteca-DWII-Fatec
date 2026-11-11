@@ -8,6 +8,7 @@ import { Eye, EyeOff } from 'lucide-react'
 export default function Login(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [carregando, setCarregando] = useState(false);
     const [erro, setErro] = useState(null);
     const [showPassword, setShowPassword] = useState(false);
     const { login } = useAuth();
@@ -16,11 +17,14 @@ export default function Login(){
     async function handleSubmit(e) {
         e.preventDefault();
         setErro(null);
+        setCarregando(true);
         try {
             await login(email, password);
             navigate("/livros");
         } catch (err) {
             setErro("E-mail ou senha inválidos.");
+        } finally {
+            setCarregando(false);
         }
     }
 
@@ -90,7 +94,7 @@ export default function Login(){
                         </div>  
 
                         <button type='submit' className='btn btn-auth btn--primaria btn--block'>
-                            Entrar
+                            {carregando ? 'Entrando...' : 'Entrar'}
                         </button>
                    </form>
 

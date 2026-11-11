@@ -46,6 +46,7 @@
 
 .conteudo__capa{
     max-width: 9rem;
+    min-width: 9rem;
 }
 
 .conteudo__info{

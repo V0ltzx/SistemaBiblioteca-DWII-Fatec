@@ -6,26 +6,16 @@ export default function ItemLivro({livro, onAbrir}){
     return(
         <div className='container-livro'>
             <div className='container-livro__capa'>
-                {livro.capa ? (<img src={livro.capa}></img>) : ( <img src={CapaIndefinida} ></img> )}
+                <img src={livro.capa ? `${livro.capa}` : `${CapaIndefinida}`} alt="capa do livro" />
             </div>
 
             <div className='container-livro__info'>
                 <div className='livro-titulo'>
-                    {livro.titulo ? (
-                        <p>{livro.titulo}</p>
-                    )
-                    : (
-                        <p>Título do livro</p>
-                    )}
+                    <p>{livro.titulo ? `${livro.titulo}` : 'Título do livro'}</p>
                 </div>
 
                 <div className='livro-isbn'>
-                    {livro.isbn ? (
-                        <p>ISBN: {livro.isbn}</p>
-                    )
-                    : (
-                        <p>ISBN: Não informado</p>
-                    )}
+                    <p>{livro.isbn ? `ISBN: ${livro.isbn}` : 'ISBN: não informado'}</p>
                 </div>
                 
                 <button className='livro-botao' onClick={onAbrir}>

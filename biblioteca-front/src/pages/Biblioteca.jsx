@@ -34,36 +34,24 @@ export default function Biblioteca(){
 
     return(
         <div>
-            
-            {busca ? (
-                <div className='biblioteca-topo'>
-                    <div className='titulo-flex'>
-                        <h1 className='titulo'>Resultados da pesquisa</h1>
-                        {usuario?.perfil === 'bibliotecario' && (
-                            <button type='button' className='topo__btn' onClick={() => setAdicionarModal(true)}>
-                                <Plus />
-                            </button>
-                        )}
-                    </div>
-                    <p className='subtexto'>{livros.length} resultados para a pesquisa: "{busca}"</p>
+            <div className='biblioteca-topo'>
+                <div className='titulo-flex'>
+                    <h1 className='titulo'>{busca ? 'Resultados da pesquisa' : 'Veja os livros da nossa biblioteca'}</h1>
+
+                    {usuario?.perfil === 'bibliotecario' && (
+                        <button type='button' className='topo__btn' onClick={() => setAdicionarModal(true)}>
+                            <Plus />
+                        </button>
+                    )}
+
                 </div>
-            ) : (
-                <div className='biblioteca-topo'>
-                    <div className='titulo-flex'>
-                        <h1 className='titulo'>Veja os livros da nossa biblioteca!</h1>
-                        {usuario?.perfil === 'bibliotecario' && (
-                            <button type='button' className='topo__btn' onClick={() => setAdicionarModal(true)}>
-                                <Plus />
-                            </button>
-                        )}
-                    </div>
-                    <p className='subtexto'>Possuímos {livros.length} livros no nosso catálogo. </p>
-                </div>       
-            )}
-            
+
+                <p className='subtexto'>{busca ? `${livros.length} resultados para a pesquisa: "${busca}"` : `Possuímos ${livros.length} livros no nosso catálogo.`}</p>
+            </div>
+    
             <br /><hr className='hr'/><br />
 
-            {carregando ? (<p>Carregando...</p>) 
+            {carregando ? (<center><br /><div className="loader"></div></center>) 
             : (
                 <ul>
                     {livros.map((livro) => (

@@ -23,7 +23,7 @@ export default function TelaLateral({children}){
 
     async function deslogar(){
         await logout();
-        navigate("/livros");
+        navigate("/home");
     }
 
     return(
@@ -40,7 +40,7 @@ export default function TelaLateral({children}){
                             <input className='barra-pesquisa__input' type="search" placeholder='Busque por ISBN ou titulo' value={busca} onChange={handleBuscaChange}></input>
                         </div>
 
-                        <button className={`btn ${location.pathname === "/livrosold" ? "btn__ativo" : "btn__inativo"} btn--block`} onClick={() => navigate("/livrosold")}>
+                        <button className={`btn ${location.pathname === "/home" ? "btn__ativo" : "btn__inativo"} btn--block`} onClick={() => navigate("/home")}>
                             <House /> Home
                         </button>
 

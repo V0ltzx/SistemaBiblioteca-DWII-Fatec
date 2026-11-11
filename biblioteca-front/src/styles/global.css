@@ -154,6 +154,15 @@ h1, h2, h3, h4, h5, h6 {
   outline: none;
 }
 
+.loader {
+  border: 8px solid #d4d4d4; 
+  border-top: 8px solid var(--cor-primaria); 
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
 /* ---------- Modal ---------- */
 
 .modal-overlay {
