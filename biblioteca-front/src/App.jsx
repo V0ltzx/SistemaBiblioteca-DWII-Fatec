@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Registrar from './pages/Registrar'
 import LivroAdd from './pages/old/livro_add';
 import TelaLateral from './components/TelaLateral';
+import Home from './pages/Home';
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import RotaProtegida from './components/RotaProtegida';
  
@@ -17,11 +18,11 @@ export default function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/registrar" element={<Registrar />} />
-        <Route path="/" element={<Navigate to="/livros" replace />} />
-        <Route path='/livrosold' 
+        <Route path="/" element={<Navigate to="/home" replace />} />
+        <Route path='/home' 
           element={
             <TelaLateral>
-              <LivrosOld />
+              <Home />
             </TelaLateral> 
           }
         />

@@ -52,7 +52,7 @@ export default function TelaLateral({children}){
                             <BookCopy /> Empréstimos
                         </button>
 
-                        {usuario ? (
+                        {usuario && (
                             <button className={`btn ${location.pathname === "/perfil" ? "btn__ativo" : "btn__inativo"} btn-perfil btn--block `} onClick={() => deslogar()}>
                                 <div className='btn-perfil__avatar' >
                                     <img src={Avatar} />
@@ -66,11 +66,6 @@ export default function TelaLateral({children}){
                                     <p>Sair da conta</p>
                                 </div>
 
-                                <ChevronRight className='btn-perfil__icon'/>
-                            </button>
-                        ) : (
-                            <button className={`btn ${location.pathname === "/perfil" ? "btn__ativo" : "btn__inativo"} btn-perfil btn--block `} onClick={() => navigate("/login")}>
-                                Entrar
                                 <ChevronRight className='btn-perfil__icon'/>
                             </button>
                         )}

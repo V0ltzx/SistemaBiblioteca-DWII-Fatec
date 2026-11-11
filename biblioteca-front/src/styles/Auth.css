@@ -58,6 +58,19 @@
     margin-bottom: 2rem;
 }
 
+.form__topo button{
+    color: var(--cor-ciano);
+    font-weight: 800;
+    font-size: medium;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    margin-left: auto;
+    gap: 0.3rem;
+}
+
 /* ---------- Formulario ---------- */
 
 .form{

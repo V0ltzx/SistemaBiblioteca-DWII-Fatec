@@ -2,7 +2,7 @@ import '../styles/Auth.css'
 import Logo from '../assets/Images/Logo.svg'
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Eye, EyeOff } from 'lucide-react'
+import { Eye, EyeOff, ArrowLeft } from 'lucide-react'
 import { useAuth } from "../contexts/AuthContext";
 
 export default function Registrar(){
@@ -21,7 +21,7 @@ export default function Registrar(){
         setCarregando(true);
         try {
             await registrar(nome, email, senha);
-            navigate("/livros");
+            navigate("/home");
         } catch (err) {
             setErro("E-mail ou senha inválidos.");
         } finally {
@@ -42,6 +42,10 @@ export default function Registrar(){
 
             <div className='auth-grid__form'>
                 <div className='form__topo'>
+                    <button onClick={() => navigate('/home')}>
+                        <ArrowLeft />Vá até a página home 
+                    </button>
+
                     <img className="form__logo" src={Logo}/>
 
                     <div className='form__text-grande'>

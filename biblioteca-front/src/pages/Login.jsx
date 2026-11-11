@@ -3,7 +3,7 @@ import Logo from '../assets/Images/Logo.svg'
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import { Eye, EyeOff } from 'lucide-react'
+import { Eye, EyeOff, ArrowLeft } from 'lucide-react'
 
 export default function Login(){
     const [email, setEmail] = useState("");
@@ -20,7 +20,7 @@ export default function Login(){
         setCarregando(true);
         try {
             await login(email, password);
-            navigate("/livros");
+            navigate("/home");
         } catch (err) {
             setErro("E-mail ou senha inválidos.");
         } finally {
@@ -41,6 +41,10 @@ export default function Login(){
 
             <div className='auth-grid__form'>
                 <div className='form__topo'>
+                    <button onClick={() => navigate('/home')}>
+                        <ArrowLeft />Vá até a página home 
+                    </button>
+
                     <img className="form__logo" src={Logo}/>
 
                     <div className='form__text-grande'>
