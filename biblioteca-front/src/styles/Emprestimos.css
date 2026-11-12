@@ -1,0 +1,31 @@
+/* ---------- Cabeçalho ---------- */
+
+.emprestimos__topo{
+    display: flex;
+    flex-direction: column;
+}
+
+.emprestimos__topo h1{
+    color: black;
+    font-weight: 800;
+    font-size: 2rem;
+}
+
+.emprestimos__topo-mutado{
+    color: var(--cor-texto-mutado);
+}
+
+/* ---------- Lista de empréstimos ---------- */
+
+.emprestimos__lista{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    padding: 1.5rem 1rem;
+}
+
+.emprestimos__lista ul{
+    width: 100%;
+}

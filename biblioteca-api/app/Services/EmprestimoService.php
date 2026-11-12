@@ -35,7 +35,7 @@ class EmprestimoService
         }
         
         $emprestimo->update([
-            'data_devolucao' => now()->toDateString(),
+            'data_devolvido' => now()->toDateString(),
             'status'         => 'devolvido',
         ]);
 

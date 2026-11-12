@@ -47,11 +47,12 @@ export default function TelaLateral({children}){
                         <button className={`btn ${location.pathname === "/livros" ? "btn__ativo" : "btn__inativo"} btn--block`} onClick={() => navigate("/livros")}>
                             <LibraryBig /> Biblioteca
                         </button>
-
-                        <button className={`btn ${location.pathname === "/emprestimos" ? "btn__ativo" : "btn__inativo"} btn--block`} onClick={() => navigate("/emprestimos")}>
-                            <BookCopy /> Empréstimos
-                        </button>
-
+                        {usuario && (
+                            <button className={`btn ${location.pathname === "/emprestimos" ? "btn__ativo" : "btn__inativo"} btn--block`} onClick={() => navigate("/emprestimos")}>
+                                <BookCopy /> Empréstimos
+                            </button>
+                        )}
+                    
                         {usuario && (
                             <button className={`btn ${location.pathname === "/perfil" ? "btn__ativo" : "btn__inativo"} btn-perfil btn--block `} onClick={() => deslogar()}>
                                 <div className='btn-perfil__avatar' >

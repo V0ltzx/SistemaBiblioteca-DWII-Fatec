@@ -7,6 +7,7 @@ import Registrar from './pages/Registrar'
 import LivroAdd from './pages/old/livro_add';
 import TelaLateral from './components/TelaLateral';
 import Home from './pages/Home';
+import Emprestimos from './pages/Emprestimos';
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import RotaProtegida from './components/RotaProtegida';
  
@@ -30,6 +31,13 @@ export default function App() {
           element={
             <TelaLateral>
               <Biblioteca />
+            </TelaLateral> 
+          }
+        />
+        <Route path='/emprestimos' 
+          element={
+            <TelaLateral>
+              <Emprestimos />
             </TelaLateral> 
           }
         />

@@ -1,0 +1,108 @@
+/* ---------- Container ---------- */
+
+.container-emprestimo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1.5rem;
+    background-color: none;
+    border: 2px solid #D4E6E9;
+    border-radius: 20px;
+    width: 100%; 
+    height: 10rem;
+    margin: 0.5rem 0;
+}
+
+/* ---------- Capa ---------- */
+
+.container-emprestimo__capa{
+    max-width: 5.5rem;
+}
+
+/* ---------- Informações ---------- */
+
+.container-emprestimo__info{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.emprestimo__titulo{
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+/* ---------- Datas ---------- */
+
+.emprestimo__data{
+    display: flex;
+    flex-direction: row;
+    margin-top: 2rem;
+    gap: 1.5rem;
+}
+
+.emprestimo__data p{
+    color: var(--cor-texto-mutado);
+    font-size: 0.8rem;
+}
+
+.emprestimo__data h1{
+    color: black;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.emprestimo__data-emp{
+    display: flex;
+    flex-direction: column;
+}
+
+.emprestimo__data-dev{
+    display: flex;
+    flex-direction: column;
+}
+
+.emprestimo__data-dev h1{
+    color: var(--cor-ciano);
+}
+
+.emprestimo__data-atrasado h1{
+    color: #AC3434;
+}
+
+/* ---------- Prazo e botões ---------- */
+
+.emprestimo__direita{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 1rem;
+    margin-left: auto;
+}
+
+.emprestimo__prazo{
+    border-radius: 999px;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.emprestimo__prazo-azul{
+    background-color: var(--cor-primaria);
+    color: white;
+}
+
+.emprestimo__prazo-vermelho{
+    background-color: #FFF0EE;
+    color: #AC3434;
+}
+
+.emprestimo__botoes{
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    border: none;
+    gap: 0.6rem;
+}

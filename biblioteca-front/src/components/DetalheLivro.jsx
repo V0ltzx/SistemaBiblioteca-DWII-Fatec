@@ -3,13 +3,25 @@ import { X, BookOpen } from 'lucide-react';
 import capaIndefinida from '../assets/Images/capaIndefinida.png';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import api from '../api/client';
+import { useState } from 'react';
 
 export default function DetalheLivro({livro, onFechar}){
     const { usuario } = useAuth();
+    const [emprestando, setEmprestando] = useState(false);
     const Navigate = useNavigate()
 
-    async function emprestar(){
-        console.log("Tentou emprestar")
+    async function handleEmprestar(e){
+        e.preventDefault();
+        setEmprestando(true);
+
+        try{
+            api.post('/emprestimos', {livro_id: livro.livro_id});
+        } catch(err){
+            console.log(err?.response?.data?.message ?? "Não foi possível emprestar o livro");
+        } finally{
+            setEmprestando(false);
+        }
     }
 
     return(
@@ -67,8 +79,8 @@ export default function DetalheLivro({livro, onFechar}){
                 
                 <div className='tela-info__botoes'>
                     <hr className='hr'/>
-                    <button className='btn btn--block btn--primaria emprestar' onClick={usuario ? () => emprestar() : () => Navigate('/login')}>
-                        <BookOpen /> Emprestar
+                    <button className='btn btn--block btn--primaria emprestar' onClick={usuario ? handleEmprestar : () => Navigate('/login')}>
+                        <BookOpen /> {emprestando ? 'Emprestando...' : 'Emprestar'}
                     </button>
                 </div>
             </div>
