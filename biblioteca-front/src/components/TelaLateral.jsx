@@ -5,7 +5,7 @@ import { useState, createContext } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom';
 import Avatar from '../assets/Images/Avatar.png'
 
-const BuscaContext = createContext();
+export const BuscaContext = createContext();
 
 export default function TelaLateral({children}){
     const [ativo, setAtivo] = useState("livros");

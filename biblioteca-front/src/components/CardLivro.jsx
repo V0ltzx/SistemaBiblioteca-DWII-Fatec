@@ -1,3 +1,4 @@
+import { useContext } from 'react'
 import '../styles/CardLivro.css'
 import { ArrowRight } from 'lucide-react'
 
@@ -5,7 +6,7 @@ export default function CardLivro( {livros} ){
 
     return (
         
-        <div className='card' key={livros.livro_id}>
+        <div className='card'>
             <div  className='capa'>
                 <img src={livros.capa}  className='imagem'/>
             </div>

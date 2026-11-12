@@ -1,13 +1,20 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/TelaBusca.css'
 import CardLivro from '../components/CardLivro'
+import { BuscaContext } from '../components/TelaLateral' /*Importando o que já existe na tela lateral */
 
 export default function TelaBusca(){
-const navigate = useNavigate();
 
-const token = localStorage.getItem('token');
-const [livros, setLivros] = useState([]);
+    const navigate = useNavigate();
+
+    const token = localStorage.getItem('token');
+    const [livros, setLivros] = useState([]);
+    const { busca } = useContext(BuscaContext)
+
+    const livroFiltrado = livros.filter((livro) => { /*Variável que vai filtrar os livros */
+        return livro.titulo.toLowerCase().includes(busca.toLowerCase())
+    });
 
     useEffect(() => {
 
@@ -29,9 +36,9 @@ const [livros, setLivros] = useState([]);
             <h1 className='titulo'>Biblioteca</h1>
             <p className='titulo-menor'>Texto futuro aqui</p>
             
-            {livros.map((livros) => (
+            {livroFiltrado.map((livros) => (
                     
-                    <CardLivro livros = {livros}/>
+                    <CardLivro  key={livros.livro_id} livros = {livros}/>
                 ))}
             
 
