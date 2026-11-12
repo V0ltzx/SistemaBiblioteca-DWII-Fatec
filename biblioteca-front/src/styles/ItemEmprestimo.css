@@ -13,6 +13,14 @@
     margin: 0.5rem 0;
 }
 
+.container-emprestimo__atrasado{
+    border-color: #AC3434;
+}
+
+.container-emprestimo__devolvido{
+    border-color: var(--cor-primaria);
+}
+
 /* ---------- Capa ---------- */
 
 .container-emprestimo__capa{
@@ -78,6 +86,7 @@
     justify-content: center;
     align-items: center;
     align-content: center;
+    height: 100%;
     gap: 1rem;
     margin-left: auto;
 }
@@ -105,4 +114,8 @@
     margin-left: auto;
     border: none;
     gap: 0.6rem;
+}
+
+.none{
+    display: none;
 }

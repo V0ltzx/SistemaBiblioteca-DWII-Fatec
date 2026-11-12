@@ -25,7 +25,12 @@ export default function ItemEmprestimo({ emprestimo, onDevolver }){
     }
 
     return(
-        <div className='container-emprestimo'>
+        <div className={
+                `container-emprestimo 
+                ${emprestimo.data_devolvido && 'container-emprestimo__devolvido'}
+                ${atrasado && 'container-emprestimo__atrasado'}`
+            }>
+
             <img 
                 className='container-emprestimo__capa' 
                 src={emprestimo?.livro?.capa ? `${emprestimo.livro.capa}` : `${capaIndefinida}`} 
@@ -96,7 +101,7 @@ export default function ItemEmprestimo({ emprestimo, onDevolver }){
                 </div>
 
                 <div className='emprestimo__botoes'>
-                    {emprestimo.data_devolvido ? (<></>) : (
+                    {emprestimo.data_devolvido ? (<span className='none'></span>) : (
                         <button type='button' className='btn bt--block btn--primaria' onClick={devolver}>
                             {devolvendo ? 'Devolvendo...' : 'Devolver'}
                         </button>

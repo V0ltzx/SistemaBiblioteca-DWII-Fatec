@@ -24,7 +24,7 @@ export default function Emprestimos(){
             <div className='emprestimos__topo'>
                 <p className='eyebrow'>EMPRÉSTIMOS</p>
                 <h1>Meus empréstimos</h1>
-                <p className='emprestimos__topo-mutado'>Acompanhe suas {emprestimos.length} leituras em andamento e os prazos de devolução</p>
+                <p className='emprestimos__topo-mutado'>Acompanhe seu histórico de leituras e os prazos de devolução</p>
             </div>
 
             <div className='emprestimos__lista'>
