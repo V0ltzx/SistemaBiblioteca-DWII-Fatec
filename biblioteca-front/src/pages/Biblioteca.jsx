@@ -35,6 +35,7 @@ export default function Biblioteca(){
     return(
         <div>
             <div className='biblioteca-topo'>
+                <p className='eyebrow'>ACERVO DE LIVROS</p>
                 <div className='titulo-flex'>
                     <h1 className='titulo'>{busca ? 'Resultados da pesquisa' : 'Veja os livros da nossa biblioteca'}</h1>
 
@@ -49,7 +50,6 @@ export default function Biblioteca(){
                 <p className='subtexto'>{busca ? `${livros.length} resultados para a pesquisa: "${busca}"` : `Possuímos ${livros.length} livros no nosso catálogo.`}</p>
             </div>
     
-            <br /><hr className='hr'/><br />
 
             {carregando ? (<center><br /><div className="loader"></div></center>) 
             : (

@@ -3,13 +3,7 @@
 .home__topo{
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-}
-
-.home__topo p{
-    color: var(--cor-ciano);
-    font-size: smaller;
-    font-weight: 800;
+    gap: 0.3rem;
 }
 
 .home__topo h1{

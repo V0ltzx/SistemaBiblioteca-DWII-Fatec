@@ -10,7 +10,7 @@ export default function Home(){
     return(
         <div>
             <div className='home__topo'>
-                <p>SUA BIBLIOTECA DIGITAL</p>
+                <p className='eyebrow'>SUA BIBLIOTECA DIGITAL</p>
                 <h1>Bem-vindo ao Readsune</h1>
             </div>
 
