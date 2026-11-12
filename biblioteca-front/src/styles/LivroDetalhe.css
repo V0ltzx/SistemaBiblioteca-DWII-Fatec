@@ -97,6 +97,10 @@
     flex-direction: column;
 }
 
+.tela-info__botoes button{
+    margin: 1rem 1rem 0 0
+}
+
 .emprestar {
     border: none;
     margin-top: 2rem;
@@ -104,9 +108,15 @@
     max-width: 8rem;
 }
 
-.indisponivel{
+.vermelho, .indisponivel{
+    width: fit-content;
     background-color: #FFF0EE;
     color: #AC3434;
+}
+
+.vermelho:hover{
+    background-color: #AC3434;
+    color: #FFF0EE;
 }
 
 .indisponivel:hover{

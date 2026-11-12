@@ -62,7 +62,13 @@ class LivroController extends Controller
 
     public function destroy(Livro $livro)
     {
+        if ($livro->emprestimos()->whereNull('data_devolvido')->exists()) {
+            return response()->json([
+                'message' => 'Não é possível remover um livro com empréstimo em aberto.',
+            ], 422);
+        }
+
         $livro->delete();
-        return response()->json(['Livro' => $livro, 'mensagem' => 'Livro removido com sucesso.'], 204);
+        return response()->noContent();
     }
 }

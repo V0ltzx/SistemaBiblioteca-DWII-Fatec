@@ -1,5 +1,5 @@
 import '../styles/LivroDetalhe.css';
-import { X, BookOpen, Ban } from 'lucide-react';
+import { X, BookOpen, Ban, Trash } from 'lucide-react';
 import capaIndefinida from '../assets/Images/capaIndefinida.png';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -9,6 +9,7 @@ import { useState } from 'react';
 export default function DetalheLivro({livro, onFechar}){
     const { usuario } = useAuth();
     const [emprestando, setEmprestando] = useState(false);
+    const [excluindo, setExcluindo] = useState(false);
     const Navigate = useNavigate()
 
     async function handleEmprestar(e){
@@ -24,6 +25,19 @@ export default function DetalheLivro({livro, onFechar}){
         }
     }
 
+    async function handleExcluir(e){
+        e.preventDefault()
+        setExcluindo(true);
+
+        try{
+            api.delete(`/livros/${livro.livro_id}`);
+        } catch(err){
+            console.log(err?.message ?? "Não foi possível excluir o livro");
+        } finally {
+            setExcluindo(false);
+        }
+    }
+
     return(
         <div className='modal-overlay' onClick={onFechar}>
             <div 
@@ -35,9 +49,6 @@ export default function DetalheLivro({livro, onFechar}){
             >
                 <div className='tela-info__topo'>
                     <p>DETALHES DO LIVRO</p>
-                    <button className='topo__botao' onClick={onFechar}>
-                        <X />
-                    </button>
                     <button className='topo__botao' onClick={onFechar}>
                         <X />
                     </button>
@@ -82,15 +93,23 @@ export default function DetalheLivro({livro, onFechar}){
                 
                 <div className='tela-info__botoes'>
                     <hr className='hr'/>
-                    {!livro.emprestado ? (
-                        <button className='btn btn--block btn--primaria emprestar' onClick={usuario ? handleEmprestar : () => Navigate('/login')}>
-                            <BookOpen /> {emprestando ? 'Emprestando...' : 'Emprestar'}
-                        </button>
-                    ) : (
-                        <button className='btn btn--block btn--primaria emprestar indisponivel' disabled>
-                            <Ban /> Indisponível
-                        </button>
-                    )}
+                    <div>
+                        {!livro.emprestado ? (
+                            <button className='btn btn--block btn--primaria emprestar' onClick={usuario ? handleEmprestar : () => Navigate('/login')}>
+                                <BookOpen /> {emprestando ? 'Emprestando...' : 'Emprestar'}
+                            </button>
+                        ) : (
+                            <button className='btn btn--block btn--primaria emprestar indisponivel' disabled>
+                                <Ban /> Indisponível
+                            </button>
+                        )}
+
+                        {usuario?.perfil === 'bibliotecario' && (
+                            <button className='btn btn--block btn--primaria emprestar vermelho' onClick={handleExcluir}>
+                                <Trash /> {excluindo ? "Excluindo" : "Excluir"}
+                            </button>
+                        )}
+                    </div>
                     
                 </div>
             </div>
