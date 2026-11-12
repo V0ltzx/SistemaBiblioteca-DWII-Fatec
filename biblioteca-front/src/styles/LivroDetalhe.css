@@ -104,3 +104,14 @@
     max-width: 8rem;
 }
 
+.indisponivel{
+    background-color: #FFF0EE;
+    color: #AC3434;
+}
+
+.indisponivel:hover{
+    cursor: not-allowed;
+    background-color: #AC3434;
+    color: #FFF0EE;
+}
+

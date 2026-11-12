@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Livro extends Model
 {
@@ -22,5 +23,9 @@ class Livro extends Model
     public function emprestimos()
     {
         return $this->hasMany(Emprestimo::class, 'livro_id', 'livro_id');
+    }
+
+    public function emprestado(): HasOne{
+        return $this->hasOne(Emprestimo::class, 'livro_id', 'livro_id')->where('status', 'emprestado');
     }
 }

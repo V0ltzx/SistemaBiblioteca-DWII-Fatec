@@ -1,5 +1,5 @@
 import '../styles/LivroDetalhe.css';
-import { X, BookOpen } from 'lucide-react';
+import { X, BookOpen, Ban } from 'lucide-react';
 import capaIndefinida from '../assets/Images/capaIndefinida.png';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -35,6 +35,9 @@ export default function DetalheLivro({livro, onFechar}){
             >
                 <div className='tela-info__topo'>
                     <p>DETALHES DO LIVRO</p>
+                    <button className='topo__botao' onClick={onFechar}>
+                        <X />
+                    </button>
                     <button className='topo__botao' onClick={onFechar}>
                         <X />
                     </button>
@@ -79,9 +82,16 @@ export default function DetalheLivro({livro, onFechar}){
                 
                 <div className='tela-info__botoes'>
                     <hr className='hr'/>
-                    <button className='btn btn--block btn--primaria emprestar' onClick={usuario ? handleEmprestar : () => Navigate('/login')}>
-                        <BookOpen /> {emprestando ? 'Emprestando...' : 'Emprestar'}
-                    </button>
+                    {!livro.emprestado ? (
+                        <button className='btn btn--block btn--primaria emprestar' onClick={usuario ? handleEmprestar : () => Navigate('/login')}>
+                            <BookOpen /> {emprestando ? 'Emprestando...' : 'Emprestar'}
+                        </button>
+                    ) : (
+                        <button className='btn btn--block btn--primaria emprestar indisponivel' disabled>
+                            <Ban /> Indisponível
+                        </button>
+                    )}
+                    
                 </div>
             </div>
         </div>
