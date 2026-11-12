@@ -51,7 +51,7 @@ class LivroController extends Controller
 
     public function show(Livro $livro)
     {
-        return $livro->load('autor', 'emprestimos');
+        return $livro->load(['autor', 'emprestado']);
     }
 
     public function update(UpdateLivroRequest $request, Livro $livro)

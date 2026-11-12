@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import api from '../api/client';
 import { useState } from 'react';
 
-export default function DetalheLivro({livro, onFechar}){
+export default function DetalheLivro({livro, onFechar, onExcluir, onEmprestar}){
     const { usuario } = useAuth();
     const [emprestando, setEmprestando] = useState(false);
     const [excluindo, setExcluindo] = useState(false);
@@ -22,6 +22,7 @@ export default function DetalheLivro({livro, onFechar}){
             console.log(err?.response?.data?.message ?? "Não foi possível emprestar o livro");
         } finally{
             setEmprestando(false);
+            onEmprestar();
         }
     }
 
@@ -35,6 +36,8 @@ export default function DetalheLivro({livro, onFechar}){
             console.log(err?.message ?? "Não foi possível excluir o livro");
         } finally {
             setExcluindo(false);
+            onExcluir();
+            onFechar();
         }
     }
 

@@ -7,7 +7,7 @@ import capaIndefinida from '../assets/Images/capaIndefinida.png';
 import { useActionData } from 'react-router-dom';
 import api from '../api/client';
 
-export default function AdicionarLivro({onFechar}){
+export default function AdicionarLivro({onFechar, onSalvar}){
 
     const [form, setForm] = useState({});
     const [buscandoIsbn, setBuscandoIsbn] = useState(false);
@@ -73,7 +73,7 @@ export default function AdicionarLivro({onFechar}){
         } catch(err) {
 
         } finally {
-            setBuscandoIsbn(false);  
+            setBuscandoIsbn(false); 
         }
     }
 
@@ -87,6 +87,8 @@ export default function AdicionarLivro({onFechar}){
         }
         finally{
             setCarregando(false)
+            onSalvar();
+            onFechar(); 
         }
     }
 

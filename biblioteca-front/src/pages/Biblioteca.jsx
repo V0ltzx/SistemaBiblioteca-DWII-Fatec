@@ -27,9 +27,11 @@ export default function Biblioteca(){
            .finally(() => setCarregando(false));
     }
 
-    function abrirLivro(livro){
-        setDetalhe(livro);
-        setModalAberto(true);
+    function abrirLivro(livro_id){
+        api.get(`/livros/${livro_id}`)
+           .then((res) => setDetalhe(res.data))
+           .catch(() => (console.log("Não foi possível emprestar o livro")))
+           .finally(() => setModalAberto(true));
     }
 
     return(
@@ -58,14 +60,14 @@ export default function Biblioteca(){
                         <ItemLivro 
                             key={livro.livro_id}
                             livro={livro}
-                            onAbrir={() => abrirLivro(livro)}
+                            onAbrir={() => abrirLivro(livro.livro_id)}
                         />
                     ))}
                 </ul>
             )}
             
-            {adicionarModal && ( <AdicionarLivro onFechar={() => setAdicionarModal(false)}/>)}
-            {modalAberto && detalhe && ( <DetalheLivro livro={detalhe} onFechar={() => setModalAberto(false)} /> )}
+            {adicionarModal && ( <AdicionarLivro onFechar={() => setAdicionarModal(false)} onSalvar={() => buscarLivros()}/>)}
+            {modalAberto && detalhe && ( <DetalheLivro livro={detalhe} onFechar={() => setModalAberto(false)} onExcluir={() => buscarLivros()} onEmprestar={() => abrirLivro(detalhe.livro_id)}/> )}
         </div>        
     )
 }
