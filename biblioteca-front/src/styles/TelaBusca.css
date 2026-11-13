@@ -10,8 +10,13 @@
     font-weight: 600;
     line-height: 1.6;
 }
-.titulo-menor{
+.texto-menor{
     color: var(--cor-texto-mutado);
     font-size: 0.8rem;
+}
+.titulo-menor-topo{
+    font-size: 0.8rem;
+    color: var(--cor-ciano);
+    font-weight: 600;
 }
 

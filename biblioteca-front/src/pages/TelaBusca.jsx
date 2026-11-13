@@ -33,8 +33,19 @@ export default function TelaBusca(){
 
     return (
         <div className='tela'>
-            <h1 className='titulo'>Biblioteca</h1>
-            <p className='titulo-menor'>Texto futuro aqui</p>
+            <div>
+                <p className='titulo-menor-topo'>ACERVO DE LIVROS</p>
+                <h1 className='titulo'>
+                    {!busca.trim() ? 'Biblioteca' 
+                        : livroFiltrado.length > 0 
+                            ? 'Resultado da pesquisa' 
+                                : 'Nenhum livro encontrado'}
+                </h1>
+                <p className='texto-menor'>
+                    { livroFiltrado.length + ' livros encontrados' }
+                </p>
+            </div>
+            
             
             {livroFiltrado.map((livros) => (
                     
