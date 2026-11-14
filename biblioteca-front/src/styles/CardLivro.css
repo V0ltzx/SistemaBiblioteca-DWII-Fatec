@@ -26,6 +26,21 @@
     gap: 0.2rem;
 }
 
+.info-livro{
+    display: grid;
+    gap: 0.6rem;
+}
+
+.detalhes-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.85rem;
+    gap: 0.2rem;
+    color: var(--cor-primaria);
+}
+
+
 .capa{
     margin-left: 1.5rem;
     justify-content: center;
