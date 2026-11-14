@@ -6,7 +6,7 @@ import { BuscaContext } from '../components/TelaLateral' /*Importando o que já 
 
 export default function TelaBusca(){
 
-    const navigate = useNavigate();
+    
 
     const token = localStorage.getItem('token');
     const [livros, setLivros] = useState([]);

@@ -15,8 +15,8 @@ export default function TelaLateral({children}){
 
     function handleBuscaChange(e) {
         setBusca(e.target.value);
-        if (location.pathname !== "/telabusca") {
-            navigate("/telabusca");
+        if (location.pathname !== "/livros") {
+            navigate("/livros");
         }
     }
 
