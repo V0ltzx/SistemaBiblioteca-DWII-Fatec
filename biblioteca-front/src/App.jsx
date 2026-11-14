@@ -1,6 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
 import Login from './pages/old/Login';
-import Livros from './pages/old/livros';
 import LivroAdd from './pages/old/livro_add';
 import TelaBusca from './pages/TelaBusca';
 import TelaLateral from './components/TelaLateral';
@@ -12,19 +11,12 @@ export default function App() {
         <Route path="/livros" 
           element={
             <TelaLateral>
-              <Livros />
-            </TelaLateral>
-            
-          } 
-        />
-        <Route path="/telabusca" 
-          element={
-            <TelaLateral>
               <TelaBusca />
             </TelaLateral>
             
           } 
         />
+        
         <Route path="/livro_add" element={<LivroAdd />} />
       </Routes>
   );
